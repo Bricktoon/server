@@ -38,6 +38,13 @@ public enum BaseResponseStatus implements BaseResponseStatusImpl {
 
     // User
     NOT_FOUND_PLACE(HttpStatus.NOT_FOUND, "USER_ERROR_01", "입력한 지점을 찾을 수 없습니다."),
+    MEMBER_NOT_FOUND_ERROR(HttpStatus.NOT_FOUND, "USER_ERROR_02", "사용자를 찾을 수 없습니다."),
+    USERNAME_ALREADY_EXISTS_ERROR(HttpStatus.BAD_REQUEST, "USER_ERROR_03", "중복된 사용자 ID입니다."),
+
+    // Book
+    BOOK_NOT_FOUND_ERROR(HttpStatus.NOT_FOUND, "BOOK_ERROR_01", "책을 찾을 수 없습니다."),
+    BOOK_NOT_AUTHORIZED_ERROR(HttpStatus.NOT_FOUND, "BOOK_ERROR_02", "해당 지점의 책이 아닙니다."),
+    SEARCH_TYPE_NOT_FOUND_ERROR(HttpStatus.NOT_FOUND, "BOOK_ERROR_03", "책 검색기준을 찾을 수 없습니다."),
 
     /**
      * 500 : 응답 실패
