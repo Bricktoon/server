@@ -126,8 +126,8 @@ jobs:
         with:
           aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
           aws_secret_key: ${{secrets.AWS_SECRET_KEY}}
-          application_name: Bricktoon-server
-          environment_name: Bricktoon-server-env
+          application_name: BricktoonServer
+          environment_name: BricktoonServer-env
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
