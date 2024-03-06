@@ -1,6 +1,7 @@
 package bricktoon.server.book.domain;
 
 import bricktoon.server.global.entity.BaseTimeEntity;
+import bricktoon.server.user.domain.Place;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,4 +25,14 @@ public class Book extends BaseTimeEntity {
     private String location;
 
     private Integer number;
+
+    private Place place;
+
+    public void update(String name, String genre, String location, Integer number, Place place) {
+        this.name = name;
+        this.genre = genre;
+        this.location = location;
+        this.number = number;
+        this.place = place;
+    }
 }
