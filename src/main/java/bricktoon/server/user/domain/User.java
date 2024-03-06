@@ -23,4 +23,9 @@ public class User extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void update(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
