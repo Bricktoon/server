@@ -61,6 +61,9 @@ public class BookService {
         if (book.isEmpty())
             throw new BaseException(BaseResponseStatus.BOOK_NOT_FOUND_ERROR);
 
+        if (!book.get().getPlace().equals(user.getPlace()))
+            throw new BaseException(BaseResponseStatus.BOOK_NOT_AUTHORIZED_ERROR);
+
         book.get().update(
                 addBookRequest.name(),
                 addBookRequest.genre(),
@@ -109,6 +112,7 @@ public class BookService {
         for (Book book: targetBookList) {
             getBookListResponseList.add(
                     GetBookListResponse.builder()
+                            .id(book.getId())
                             .name(book.getName())
                             .genre(book.getGenre())
                             .location(book.getLocation())
@@ -121,7 +125,7 @@ public class BookService {
     private List<Book> getTargetBookList(User user, String type, String keyword) {
         switch (type) {
             case "도서명":
-                return bookRepository.findAllByNameAndPlaceOrderByNameAsc(keyword, user.getPlace());
+                return bookRepository.findAllByNameContainsAndPlaceOrderByNameAsc(keyword, user.getPlace());
             case "장르":
                 return bookRepository.findAllByGenreAndPlaceOrderByNameAsc(keyword, user.getPlace());
         }
