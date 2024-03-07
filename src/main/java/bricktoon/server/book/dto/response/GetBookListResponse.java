@@ -4,6 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record GetBookListResponse(
+        Long id,
         String name,
         String genre,
         String location,
