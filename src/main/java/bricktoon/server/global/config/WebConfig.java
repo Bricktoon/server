@@ -11,7 +11,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(final CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080")
+                .allowedOrigins("http://bricktoonserver-env.eba-cbaq3hyp.ap-northeast-2.elasticbeanstalk.com",
+                        "http://localhost:8080")
                 .allowedMethods("GET", "POST", "DELETE", "PATCH", "PUT", "OPTIONS")
                 .maxAge(3000);
     }
