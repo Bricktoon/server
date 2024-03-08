@@ -32,6 +32,8 @@ public class AuthController {
             UserDetails userDetails,
             @Valid @RequestBody LoginRequest loginRequest
     ) {
-        return BaseResponse.toResponseEntityContainsResult(authService.updateUser(userDetails, loginRequest));
+        return BaseResponse.toResponseEntityContainsResult(
+                authService.updateUser(userDetails, loginRequest)
+        );
     }
 }
