@@ -10,8 +10,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,10 +36,12 @@ public class BookController {
     @PostMapping("/all")
     public ResponseEntity<BaseResponse> addAllBook(
             @AuthenticationPrincipal UserDetails userDetails,
-            @RequestBody List<AddBookRequest> addBookRequestList
-    ) {
-        bookService.addAllBook(userDetails, addBookRequestList);
-        return BaseResponse.toResponseEntityContainsStatus(BaseResponseStatus.CREATED);
+            @RequestParam("file") MultipartFile file
+            ) throws IOException {
+        return BaseResponse.toResponseEntityContainsStatusAndResult(
+                BaseResponseStatus.CREATED,
+                bookService.addAllBook(userDetails, file)
+        );
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -83,6 +86,16 @@ public class BookController {
     ) {
         return BaseResponse.toResponseEntityContainsResult(
                 bookService.getBookList(userDetails, type, keyword)
+        );
+    }
+
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/all")
+    public ResponseEntity<BaseResponse> getAllBook(
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        return BaseResponse.toResponseEntityContainsResult(
+                bookService.getAllBook(userDetails)
         );
     }
 
