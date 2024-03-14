@@ -76,8 +76,16 @@ public class BookService {
                 completeRow = (long) row.getRowNum();
             completeRow++;
 
-            if (bookRepository.existsByName(book.getName()))
+            if (bookRepository.existsByName(book.getName())) {
+                bookRepository.findByName(book.getName()).get().update(
+                        row.getCell(0).getStringCellValue(),
+                        row.getCell(1).getStringCellValue(),
+                        row.getCell(2).getStringCellValue(),
+                        (int) row.getCell(4).getNumericCellValue(),
+                        user.getPlace()
+                );
                 continue;
+            }
             bookList.add(book);
         }
 
