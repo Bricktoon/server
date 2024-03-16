@@ -43,6 +43,17 @@ public class BookService {
                 .number(addBookRequest.number())
                 .place(user.getPlace())
                 .build();
+        if (bookRepository.existsByName(book.getName())) {
+            Book updatedBook = bookRepository.findByName(book.getName()).get();
+            updatedBook.update(
+                    addBookRequest.name(),
+                    addBookRequest.genre(),
+                    addBookRequest.location(),
+                    addBookRequest.number(),
+                    user.getPlace()
+            );
+            return new AddBookResponse(updatedBook.getId());
+        }
         Book savedBook = bookRepository.save(book);
         return new AddBookResponse(savedBook.getId());
     }
