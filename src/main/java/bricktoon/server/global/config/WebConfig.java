@@ -11,10 +11,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(final CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://bricktoonserver-env.eba-cbaq3hyp.ap-northeast-2.elasticbeanstalk.com",
-                        "https://www.bricktoon-server.shop",
+                .allowedOrigins("http://bricktoonserver-env.eba-zgg9mm72.ap-northeast-2.elasticbeanstalk.com",
+                        "https://www.bricktoon-server2025.shop",
                         "https://front-bricktoon-1myj.vercel.app",
-                        "https://www.bricktoon.store",
+                        "https://www.bricktoon2025.store",
                         "http://localhost:8080", "http://localhost:5173")
                 .allowedMethods("GET", "POST", "DELETE", "PATCH", "PUT", "OPTIONS")
                 .allowCredentials(true)
